@@ -1,66 +1,82 @@
+/* 全体の背景：あったかベージュ */
 body {
-    font-family: sans-serif;
-    background: #f3f6ff;
-    text-align: center;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+    background-color: #fdf5e6; /* 温かいベージュ */
+    color: #5d4037; /* 文字は優しいブラウン */
     padding: 20px;
+    line-height: 1.6;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 28px;
+    color: #8d6e63;
+    margin-top: 30px;
 }
 
 .subtitle {
-    color: #666;
-    margin-bottom: 20px;
+    font-size: 14px;
+    color: #a1887f;
 }
 
+/* 入力エリアのカード */
 .container {
-    background: white;
-    padding: 30px;
-    margin: auto;
-    width: 320px;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background: #ffffff;
+    padding: 25px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(141, 110, 99, 0.1);
+    border: 1px solid #efebe9;
 }
 
+/* セレクトボックスをおしゃれに */
 select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    border-radius: 10px;
+    border: 1px solid #d7ccc8;
+    background-color: #fafafa;
+    color: #5d4037;
+    font-size: 16px;
+    /* デフォルトの矢印を少しおしゃれにするための設定 */
+    cursor: pointer;
 }
 
+/* 診断ボタン：くすみオレンジでおしゃれに */
 button {
-    padding: 12px 20px;
-    background: #5b7cff;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffab91; /* くすみオレンジ */
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    width: 100%;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #415fe0;
+    background-color: #ff8a65;
+    transform: translateY(-2px); /* 少し浮き上がる演出 */
 }
 
+/* 結果表示エリア */
 #resultBox {
     margin-top: 40px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#resultTitle {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-#resultText {
-    font-size: 18px;
-}
-
-img {
-    width: 300px;
-    margin-top: 20px;
-    border-radius: 10px;
+#resultImage {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-top: 15px;
 }
