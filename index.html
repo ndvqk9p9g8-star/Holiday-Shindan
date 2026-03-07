@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>今日は何する？休日診断</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>今日は何する？休日診断</h1>
+    <p class="subtitle">質問に答えると、あなたにぴったりの休日プランが出てきます✨</p>
+
+    <div class="container">
+        <select id="time">
+            <option value="full">1日まるごと</option>
+            <option value="half">半日くらい</option>
+            <option value="short">2〜3時間</option>
+        </select>
+
+        <select id="people">
+            <option value="one">1人</option>
+            <option value="two">2人</option>
+            <option value="group">3人以上</option>
+        </select>
+
+        <select id="who">
+            <option value="alone">ひとり時間</option>
+            <option value="friends">友達</option>
+            <option value="couple">カップル</option>
+            <option value="family">家族</option>
+        </select>
+
+        <select id="mood">
+            <option value="relax">ゆったり</option>
+            <option value="active">元気</option>
+            <option value="new">刺激</option>
+            <option value="food">グルメ</option>
+        </select>
+
+        <select id="budget">
+            <option value="low">節約デー（0〜2000円）</option>
+            <option value="mid">まぁまぁ使える（〜6000円）</option>
+            <option value="high">今日は楽しむ日（1万円以上）</option>
+        </select>
+
+        <button onclick="diagnose()">診断する！</button>
+    </div>
+
+    <div id="resultBox">
+        <h2 id="resultTitle"></h2>
+        <p id="resultText"></p>
+        <img id="resultImage" src="" style="max-width:100%;">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
