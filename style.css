@@ -3,27 +3,17 @@ body {
     background-color: #fdf5e6;
     color: #4e342e;
     padding: 20px;
-    margin: 0;
-}
-
-h1 {
-    color: #8d6e63;
     text-align: center;
-}
-
-.subtitle {
-    text-align: center;
-    color: #a1887f;
-    margin-bottom: 30px;
 }
 
 .container {
     background: #fff;
     max-width: 450px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 25px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: left;
 }
 
 .input-group {
@@ -35,7 +25,7 @@ label {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 8px;
-    color: #6d4c41;
+    color: #8d6e63;
 }
 
 select {
@@ -44,12 +34,7 @@ select {
     border-radius: 10px;
     border: 2px solid #efebe9;
     font-size: 16px;
-    outline: none;
-    transition: 0.3s;
-}
-
-select:focus {
-    border-color: #ffab91;
+    background: #fafafa;
 }
 
 button {
@@ -63,50 +48,29 @@ button {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(255,171,145,0.4);
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255,171,145,0.6);
 }
 
 #resultBox {
-    max-width: 500px;
+    max-width: 450px;
     margin: 40px auto;
-    background: white;
-    padding: 25px;
+    background: #fff;
+    padding: 30px;
     border-radius: 25px;
-    text-align: center;
+    border: 3px solid #ffab91;
     animation: slideUp 0.6s ease-out;
 }
 
 #resultTitle {
     color: #d84315;
     font-size: 22px;
-    margin-bottom: 15px;
 }
 
 #resultText {
     font-size: 16px;
     line-height: 1.8;
-    color: #5d4037;
-    margin-bottom: 20px;
-}
-
-.img-container {
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-#resultImage {
-    width: 100%;
-    height: auto;
-    display: block;
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
