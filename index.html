@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>決定版！休日診断</title>
+    <title>ガチ休日診断 - 完全版</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>今日は何する？休日診断</h1>
-    <p class="subtitle">今の状況を選ぶだけで、最高のプランを提案します✨</p>
+    <p class="subtitle">全ての条件を計算して、最高の場所を導き出します。</p>
 
     <div class="container">
         <div class="input-group">
-            <label>⏰ 確保できる時間は？</label>
-            <select id="time">
-                <option value="full">1日たっぷり</option>
-                <option value="half">半日くらい</option>
-                <option value="short">2〜3時間</option>
-            </select>
-        </div>
-
-        <div class="input-group">
             <label>👥 人数は？</label>
-            <select id="people">
+            <select id="people" onchange="toggleWho()">
                 <option value="one">1人</option>
                 <option value="two">2人</option>
                 <option value="group">3人以上</option>
             </select>
         </div>
 
-        <div class="input-group">
+        <div class="input-group" id="whoGroup" style="display: none;">
             <label>🤝 誰と過ごす？</label>
             <select id="who">
-                <option value="alone">ひとり</option>
                 <option value="friends">友達</option>
                 <option value="couple">カップル</option>
                 <option value="family">家族</option>
+                <option value="alone" selected>ひとり</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>⏰ 確保できる時間は？</label>
+            <select id="time">
+                <option value="full">1日たっぷり</option>
+                <option value="half">半日くらい</option>
+                <option value="short">2〜3時間</option>
             </select>
         </div>
 
@@ -58,15 +58,13 @@
             </select>
         </div>
 
-        <button onclick="diagnose()">この条件で診断する！</button>
+        <button onclick="diagnose()">診断する！</button>
     </div>
 
     <div id="resultBox" style="display: none;">
         <h2 id="resultTitle"></h2>
         <p id="resultText"></p>
-        <div class="img-container">
-            <img id="resultImage" src="" alt="診断結果イメージ">
-        </div>
+        <button onclick="location.reload()" style="margin-top:20px; background:#ccc; font-size:14px; padding:10px;">やり直す</button>
     </div>
 
     <script src="script.js"></script>
