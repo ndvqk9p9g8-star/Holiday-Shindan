@@ -1,99 +1,82 @@
 function diagnose() {
     const time = document.getElementById("time").value;
-    const people = document.getElementById("people").value;
-    const who = document.getElementById("who").value;
-    const mood = document.getElementById("mood").value;
     const budget = document.getElementById("budget").value;
+    const mood = document.getElementById("mood").value;
+    const who = document.getElementById("who").value;
 
     let title = "";
     let desc = "";
     let keyword = "";
 
     // -----------------------------------------
-    // 1. 予算が「低（節約）」の場合の場所と内容
+    // 【1. 予算：節約（low）】のときの時間別プラン
     // -----------------------------------------
     if (budget === "low") {
-        if (mood === "relax") {
-            title = "芝生が広がる無料の大きな都立公園";
-            desc = "お金をかけずに、レジャーシートを広げて読書やお昼寝。風を感じるだけで最高のデトックスになります。";
-            keyword = "park,nature";
-        } else if (mood === "active") {
-            title = "街歩き＆階段ダッシュ？な展望台巡り";
-            desc = "あえて一駅前で降りて、知らない道を散策。無料の展望ロビーを目指して歩く、ヘルシーな冒険へ。";
-            keyword = "walking,city";
-        } else if (mood === "food") {
-            title = "地元で愛される激安・激ウマ立ち食いそば";
-            desc = "ワンコインでお釣りがくる幸せ。回転の速いお店で、サクッと江戸っ子気分を味わってみて。";
-            keyword = "streetfood,noodle";
+        if (time === "full") {
+            title = "1日たっぷり！大きな公園でピクニック＆読書";
+            desc = "お弁当を持って、広大な公園へ。1日あるからこそ、時間を気にせず芝生でゴロゴロしたり、園内を散策したり。究極の0円贅沢です。";
+            keyword = "park,picnic";
+        } else if (time === "half") {
+            title = "半日ぶらり。知らない街の商店街歩き";
+            desc = "片道数百円の電車賃だけで、隣町の商店街へ。活気ある空気を感じながら、気になったお店を覗く「小さな冒険」が楽しめます。";
+            keyword = "street,japan";
         } else {
-            title = "大型書店のマニアックな棚巡り";
-            desc = "まだ知らない世界に出会える場所。1日いても飽きない情報の宝庫で、好奇心を満たしましょう。";
-            keyword = "bookstore";
-        }
-    } 
-    // -----------------------------------------
-    // 2. 予算が「中（普通）」の場合の場所と内容
-    // -----------------------------------------
-    else if (budget === "mid") {
-        if (mood === "relax") {
-            title = "お洒落な隠れ家ブックカフェ";
-            desc = "美味しいコーヒーと静かな空間。数時間、自分だけの世界に没入してリラックスできます。";
-            keyword = "cafe,coffee";
-        } else if (mood === "active") {
-            title = "最新の室内アスレチック施設";
-            desc = "天候を気にせず、大人も全力で遊べるスポット。友達や家族と、思いっきり体を動かして！";
-            keyword = "sports,indoor";
-        } else if (mood === "food") {
-            title = "予約制のアフタヌーンティー";
-            desc = "少しお洒落をして、見た目も美しいスイーツを。優雅な気分で美味しいものを味わう贅沢。";
-            keyword = "afternoontea,cake";
-        } else {
-            title = "没入型の最新アート展";
-            desc = "光と音の演出で、自分が作品の一部になる体験。新しいインスピレーションが湧いてくるはず。";
-            keyword = "art,exhibition";
+            title = "2〜3時間。大型書店のハシゴ";
+            desc = "短時間なら、空調の効いた本屋さんが最高。普段見ないジャンルの棚をチェックするだけで、良い刺激になります。";
+            keyword = "bookstore,library";
         }
     }
     // -----------------------------------------
-    // 3. 予算が「高（贅沢）」の場合の場所と内容
+    // 【2. 予算：普通（mid）】のときの時間別プラン
+    // -----------------------------------------
+    else if (budget === "mid") {
+        if (time === "full") {
+            title = "1日満喫！江の島や鎌倉など「プチ旅行」";
+            desc = "少し足を伸ばして観光地へ。食べ歩きを楽しんだり、景色を眺めたり。1日あれば、日帰り旅行気分をしっかり味わえます。";
+            keyword = "kamakura,travel";
+        } else if (time === "half") {
+            title = "半日リフレッシュ。お洒落な映画館＆カフェ";
+            desc = "ちょっと良いシートの映画館で最新作を。その後はカフェで感想を語り合う、王道だけど満足度の高い休日です。";
+            keyword = "cinema,cafe";
+        } else {
+            title = "2〜3時間。こだわりスイーツ or 銭湯";
+            desc = "短時間なら、行列のできる人気店でおやつを食べるか、綺麗な銭湯でサッと汗を流すのが最高のリフレッシュ。";
+            keyword = "sweets,sento";
+        }
+    }
+    // -----------------------------------------
+    // 【3. 予算：贅沢（high）】のときの時間別プラン
     // -----------------------------------------
     else if (budget === "high") {
-        if (mood === "relax") {
-            title = "個室露天風呂付きの日帰り温泉";
-            desc = "誰にも邪魔されず、プライベートな空間で温泉と懐石料理を。究極の癒やしをお約束します。";
+        if (time === "full") {
+            title = "1日贅沢！個室露天風呂がある日帰り温泉";
+            desc = "ヘリは乗りませんが、温泉なら最高！個室で豪華な食事と温泉を楽しめるプランで、日頃の疲れを完全にリセットしましょう。";
             keyword = "onsen,luxury";
-        } else if (mood === "active") {
-            title = "東京湾を望むクルージング体験";
-            desc = "海風を切り裂きながら進む贅沢。特別な乗り物で、日常では味わえないスピードと景色を楽しんで。";
-            keyword = "cruise,ship";
-        } else if (mood === "food") {
-            title = "星付きレストランのフルコース";
-            desc = "今日は特別な日。最高級の食材とサービスで、五感をフルに使って美食の世界に浸りましょう。";
-            keyword = "fine-dining,chef";
+        } else if (time === "half") {
+            title = "半日リッチ。ホテルでのアフタヌーンティー";
+            desc = "午後の数時間を使って、高級ホテルのラウンジへ。最高のサービスと美味しい紅茶で、特別な気分に浸れます。";
+            keyword = "afternoontea,hotel";
         } else {
-            title = "ヘリコプターでのナイトクルーズ";
-            desc = "空から見下ろす街の輝き。これ以上の刺激はありません。一生の思い出に残る休日を。";
-            keyword = "helicopter,nightview";
+            title = "2〜3時間。高級部位専門の焼肉 or スパ";
+            desc = "短時間で予算を使うなら、食か癒やしに集中！最高級のお肉を少しだけ、またはプロによるマッサージで自分を甘やかして。";
+            keyword = "yakiniku,spa";
         }
     }
 
-    // -----------------------------------------
-    // 2人で過ごすならタイトルに付け加える（微調整）
-    // -----------------------------------------
-    const peoplePrefix = people === "one" ? "おひとり様で楽しむ" : 
-                         people === "two" ? "2人で過ごす" : "みんなでワイワイ";
-    
-    const finalTitle = `✨ ${peoplePrefix}：${title}`;
+    // 気分による微調整（隠し味）
+    if (mood === "active") {
+        desc += " 今日は「アクティブ」な気分なので、なるべく歩くコースを選んでみてくださいね！";
+    }
 
     // 画面に反映
     const resultBox = document.getElementById("resultBox");
     resultBox.style.display = "block";
     
-    document.getElementById("resultTitle").innerText = finalTitle;
+    document.getElementById("resultTitle").innerText = "✨ " + title;
     document.getElementById("resultText").innerText = desc;
     
-    // 画像URLをキーワード連動で生成
-    document.getElementById("resultImage").src = `https://source.unsplash.com/featured/?${keyword},japan`;
+    // 画像はUnsplashのAPIを使用
+    document.getElementById("resultImage").src = `https://images.unsplash.com/featured/?${keyword},city`;
 
-    // 結果の位置まで自動でスクロール
     resultBox.scrollIntoView({ behavior: 'smooth' });
 }
