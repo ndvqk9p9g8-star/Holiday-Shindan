@@ -3,58 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>今日は何する？休日診断</title>
+    <title>決定版！休日診断</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>今日は何する？休日診断</h1>
-    <p class="subtitle">質問に答えると、あなたにぴったりの休日プランが出てきます✨</p>
+    <p class="subtitle">今の状況を選ぶだけで、最高のプランを提案します✨</p>
 
     <div class="container">
-        <label>時間はどのくらい？</label>
-        <select id="time">
-            <option value="full">1日まるごと</option>
-            <option value="half">半日くらい</option>
-            <option value="short">2〜3時間</option>
-        </select>
+        <div class="input-group">
+            <label>⏰ 確保できる時間は？</label>
+            <select id="time">
+                <option value="full">1日たっぷり</option>
+                <option value="half">半日くらい</option>
+                <option value="short">2〜3時間</option>
+            </select>
+        </div>
 
-        <label>人数は？</label>
-        <select id="people">
-            <option value="one">1人</option>
-            <option value="two">2人</option>
-            <option value="group">3人以上</option>
-        </select>
+        <div class="input-group">
+            <label>👥 人数は？</label>
+            <select id="people">
+                <option value="one">1人</option>
+                <option value="two">2人</option>
+                <option value="group">3人以上</option>
+            </select>
+        </div>
 
-        <label>誰と過ごす？</label>
-        <select id="who">
-            <option value="alone">ひとり時間</option>
-            <option value="friends">友達</option>
-            <option value="couple">カップル</option>
-            <option value="family">家族</option>
-        </select>
+        <div class="input-group">
+            <label>🤝 誰と過ごす？</label>
+            <select id="who">
+                <option value="alone">ひとり</option>
+                <option value="friends">友達</option>
+                <option value="couple">カップル</option>
+                <option value="family">家族</option>
+            </select>
+        </div>
 
-        <label>今の気分は？</label>
-        <select id="mood">
-            <option value="relax">ゆったり</option>
-            <option value="active">元気</option>
-            <option value="new">刺激</option>
-            <option value="food">グルメ</option>
-        </select>
+        <div class="input-group">
+            <label>💭 今の気分は？</label>
+            <select id="mood">
+                <option value="relax">ゆったりしたい</option>
+                <option value="active">動きたい</option>
+                <option value="new">刺激がほしい</option>
+                <option value="food">美味しいもの！</option>
+            </select>
+        </div>
 
-        <label>予算は？</label>
-        <select id="budget">
-            <option value="low">節約デー（0〜2000円）</option>
-            <option value="mid">まぁまぁ使える（〜6000円）</option>
-            <option value="high">今日は楽しむ日（1万円以上）</option>
-        </select>
+        <div class="input-group">
+            <label>💰 予算は？</label>
+            <select id="budget">
+                <option value="low">節約（〜2000円）</option>
+                <option value="mid">普通（〜6000円）</option>
+                <option value="high">贅沢（1万円〜）</option>
+            </select>
+        </div>
 
-        <button onclick="diagnose()">診断する！</button>
+        <button onclick="diagnose()">この条件で診断する！</button>
     </div>
 
     <div id="resultBox" style="display: none;">
         <h2 id="resultTitle"></h2>
         <p id="resultText"></p>
-        <img id="resultImage" src="" alt="診断結果イメージ">
+        <div class="img-container">
+            <img id="resultImage" src="" alt="診断結果イメージ">
+        </div>
     </div>
 
     <script src="script.js"></script>
