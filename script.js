@@ -7,80 +7,93 @@ function diagnose() {
 
     let title = "";
     let desc = "";
-    let keyword = ""; // 画像検索用
+    let keyword = "";
 
-    // --- 徹底分岐ロジック ---
-    
-    // 1. 予算が「高い」場合の豪華プラン
-    if (budget === "high") {
-        if (mood === "food") {
-            title = "最高級の美食体験ディナー";
-            desc = `${who === 'alone' ? '自分へのご褒美に' : '大切な人と'}、予約困難な名店へ。予算を気にせず、一番良いコースを堪能する贅沢な時間を。`;
-            keyword = "luxury,dinner";
-        } else if (time === "full") {
-            title = "日帰り贅沢温泉リゾート";
-            desc = "1日フルに使って、貸切露天風呂やエステを満喫。移動もタクシーで快適に、究極の癒やしを。";
-            keyword = "spa,resort";
+    // -----------------------------------------
+    // 1. 予算が「低（節約）」の場合の場所と内容
+    // -----------------------------------------
+    if (budget === "low") {
+        if (mood === "relax") {
+            title = "芝生が広がる無料の大きな都立公園";
+            desc = "お金をかけずに、レジャーシートを広げて読書やお昼寝。風を感じるだけで最高のデトックスになります。";
+            keyword = "park,nature";
+        } else if (mood === "active") {
+            title = "街歩き＆階段ダッシュ？な展望台巡り";
+            desc = "あえて一駅前で降りて、知らない道を散策。無料の展望ロビーを目指して歩く、ヘルシーな冒険へ。";
+            keyword = "walking,city";
+        } else if (mood === "food") {
+            title = "地元で愛される激安・激ウマ立ち食いそば";
+            desc = "ワンコインでお釣りがくる幸せ。回転の速いお店で、サクッと江戸っ子気分を味わってみて。";
+            keyword = "streetfood,noodle";
         } else {
-            title = "ヘリクルーズ or 高級スパ";
-            desc = "短時間でも圧倒的な非日常を。空からの景色やプロの施術で、心身ともにリフレッシュ。";
-            keyword = "helicopter,massage";
+            title = "大型書店のマニアックな棚巡り";
+            desc = "まだ知らない世界に出会える場所。1日いても飽きない情報の宝庫で、好奇心を満たしましょう。";
+            keyword = "bookstore";
         }
     } 
-    // 2. 予算が「低い」場合の工夫プラン
-    else if (budget === "low") {
-        if (mood === "active") {
-            title = "絶景を巡るサイクリング旅";
-            desc = "レンタサイクルで、まだ行ったことのない公園や海岸へ。風を感じながら体を動かす、最高にヘルシーな休日です。";
-            keyword = "cycling,park";
-        } else if (who === "alone") {
-            title = "大型書店のハシゴ＆カフェ読書";
-            desc = "気になる本を片っ端からチェック。コーヒー1杯の値段で、知識の海に溺れる静かな休日。";
-            keyword = "book,cafe";
+    // -----------------------------------------
+    // 2. 予算が「中（普通）」の場合の場所と内容
+    // -----------------------------------------
+    else if (budget === "mid") {
+        if (mood === "relax") {
+            title = "お洒落な隠れ家ブックカフェ";
+            desc = "美味しいコーヒーと静かな空間。数時間、自分だけの世界に没入してリラックスできます。";
+            keyword = "cafe,coffee";
+        } else if (mood === "active") {
+            title = "最新の室内アスレチック施設";
+            desc = "天候を気にせず、大人も全力で遊べるスポット。友達や家族と、思いっきり体を動かして！";
+            keyword = "sports,indoor";
+        } else if (mood === "food") {
+            title = "予約制のアフタヌーンティー";
+            desc = "少しお洒落をして、見た目も美しいスイーツを。優雅な気分で美味しいものを味わう贅沢。";
+            keyword = "afternoontea,cake";
         } else {
-            title = "おしゃピク（おしゃれピクニック）";
-            desc = "家にあるものを持ち寄って、景色の良い公園へ。外で食べるだけで、いつもの食事がイベントに変わります。";
-            keyword = "picnic";
+            title = "没入型の最新アート展";
+            desc = "光と音の演出で、自分が作品の一部になる体験。新しいインスピレーションが湧いてくるはず。";
+            keyword = "art,exhibition";
         }
     }
-    // 3. 予算が「普通」かつ「人数」で分ける
-    else {
-        if (people === "one") {
-            if (mood === "new") {
-                title = "ミニシアターで映画鑑賞";
-                desc = "大型館ではやらないような、マニアックな名作を。鑑賞後は一人でじっくり余韻に浸って。";
-                keyword = "cinema";
-            } else {
-                title = "隠れ家カフェ巡り";
-                desc = "スマホを置いて、お店のこだわりを味わう時間。自分のペースで街を歩く楽しさを再発見。";
-                keyword = "coffee,interior";
-            }
-        } else if (people === "two") {
-            title = "話題の没入型アート展";
-            desc = "2人で最新のデジタルアートを体験。写真もたくさん撮って、会話が途切れない刺激的な時間に。";
-            keyword = "art,digital";
+    // -----------------------------------------
+    // 3. 予算が「高（贅沢）」の場合の場所と内容
+    // -----------------------------------------
+    else if (budget === "high") {
+        if (mood === "relax") {
+            title = "個室露天風呂付きの日帰り温泉";
+            desc = "誰にも邪魔されず、プライベートな空間で温泉と懐石料理を。究極の癒やしをお約束します。";
+            keyword = "onsen,luxury";
+        } else if (mood === "active") {
+            title = "東京湾を望むクルージング体験";
+            desc = "海風を切り裂きながら進む贅沢。特別な乗り物で、日常では味わえないスピードと景色を楽しんで。";
+            keyword = "cruise,ship";
+        } else if (mood === "food") {
+            title = "星付きレストランのフルコース";
+            desc = "今日は特別な日。最高級の食材とサービスで、五感をフルに使って美食の世界に浸りましょう。";
+            keyword = "fine-dining,chef";
         } else {
-            title = "チーム対抗！ボウリング or ダーツ";
-            desc = "みんなでワイワイ盛り上がるなら定番が一番。チーム戦にして、ちょっとした景品を用意するとさらに楽しい！";
-            keyword = "darts,party";
+            title = "ヘリコプターでのナイトクルーズ";
+            desc = "空から見下ろす街の輝き。これ以上の刺激はありません。一生の思い出に残る休日を。";
+            keyword = "helicopter,nightview";
         }
     }
 
-    // --- 画像の表示 (Unsplashから動的に取得) ---
-    // ランダム要素を入れるためにランダムな数字を末尾に付与
-    const randomNum = Math.floor(Math.random() * 100);
-    const imageUrl = `https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1000&auto=format&fit=crop&sig=${randomNum}`; 
-    // ※↑本来はキーワード連動が理想ですが、Unsplashの仕様変更に備え、安定した画像にキーワードを添えます
-    const dynamicImageUrl = `https://source.unsplash.com/featured/?${keyword},city`;
+    // -----------------------------------------
+    // 2人で過ごすならタイトルに付け加える（微調整）
+    // -----------------------------------------
+    const peoplePrefix = people === "one" ? "おひとり様で楽しむ" : 
+                         people === "two" ? "2人で過ごす" : "みんなでワイワイ";
+    
+    const finalTitle = `✨ ${peoplePrefix}：${title}`;
 
     // 画面に反映
     const resultBox = document.getElementById("resultBox");
     resultBox.style.display = "block";
     
-    document.getElementById("resultTitle").innerText = title;
+    document.getElementById("resultTitle").innerText = finalTitle;
     document.getElementById("resultText").innerText = desc;
-    document.getElementById("resultImage").src = dynamicImageUrl;
+    
+    // 画像URLをキーワード連動で生成
+    document.getElementById("resultImage").src = `https://source.unsplash.com/featured/?${keyword},japan`;
 
-    // スムーズに結果まで移動
-    window.scrollTo({ top: resultBox.offsetTop, behavior: 'smooth' });
+    // 結果の位置まで自動でスクロール
+    resultBox.scrollIntoView({ behavior: 'smooth' });
 }
