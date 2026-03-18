@@ -1,64 +1,86 @@
 function diagnose() {
-    // 選択された値を取得
     const time = document.getElementById("time").value;
     const people = document.getElementById("people").value;
     const who = document.getElementById("who").value;
     const mood = document.getElementById("mood").value;
     const budget = document.getElementById("budget").value;
 
-    // --- 1. 場所を決める (who × mood) ---
-    const places = {
-        alone: { relax: "静かな隠れ家ブックカフェ", active: "展望台のある大きな公園", new: "まだ降りたことのない駅の商店街", food: "行列ができる人気のラーメン屋" },
-        friends: { relax: "広めのソファーがあるラウンジ", active: "最新の室内アスレチック施設", new: "話題の没入型アート展", food: "多国籍料理が楽しめるフードコート" },
-        couple: { relax: "海が見える静かな公園", active: "夜景がきれいなスケートリンク", new: "ワークショップができる工芸スタジオ", food: "隠れ家風のイタリアンレストラン" },
-        family: { relax: "芝生が広がる大きな植物園", active: "家族で楽しめるサバゲー場", new: "体験型サイエンスミュージアム", food: "個室のある豪華な回転寿司" }
-    };
+    let title = "";
+    let desc = "";
+    let keyword = ""; // 画像検索用
 
-    // --- 2. 過ごし方を決める (budget × time) ---
-    // これで「たっぷりなのにサクッと」という矛盾を防ぎます
-    const details = {
-        low: {
-            full: "お金をかけず、お弁当を持って1日中その場所の空気を味わい尽くしましょう。歩くだけでも新しい発見があるはず。",
-            half: "数時間はスマホを置いて、景色や雰囲気をぼーっと楽しんで。0円でできる最高の贅沢です。",
-            short: "ちょっとした散歩気分で立ち寄ってみて。お金を使わなくても、リフレッシュには十分な時間です。"
-        },
-        mid: {
-            full: "ランチからおやつまで、自分へのご褒美をちりばめた充実の1日に。少し贅沢なプランを選んでみて。",
-            half: "お気に入りのメニューやグッズを1つだけ奮発して、短時間でも満足度の高い時間を過ごしましょう。",
-            short: "スキマ時間にプレミアムな体験を。限定スイーツや特別席など、プチ贅沢が今日のラッキーポイント。"
-        },
-        high: {
-            full: "今日は最高級の休日！一番良いコースを予約して、朝から晩までVIP気分で遊び尽くすのが正解です。",
-            half: "移動はタクシーを使ったり、待ち時間を短縮するパスを買ったりして、濃密でリッチな時間を過ごして。",
-            short: "短時間だからこそ、最高級の素材やサービスに一点突破で投資を。短いけれど忘れられない体験になります。"
+    // --- 徹底分岐ロジック ---
+    
+    // 1. 予算が「高い」場合の豪華プラン
+    if (budget === "high") {
+        if (mood === "food") {
+            title = "最高級の美食体験ディナー";
+            desc = `${who === 'alone' ? '自分へのご褒美に' : '大切な人と'}、予約困難な名店へ。予算を気にせず、一番良いコースを堪能する贅沢な時間を。`;
+            keyword = "luxury,dinner";
+        } else if (time === "full") {
+            title = "日帰り贅沢温泉リゾート";
+            desc = "1日フルに使って、貸切露天風呂やエステを満喫。移動もタクシーで快適に、究極の癒やしを。";
+            keyword = "spa,resort";
+        } else {
+            title = "ヘリクルーズ or 高級スパ";
+            desc = "短時間でも圧倒的な非日常を。空からの景色やプロの施術で、心身ともにリフレッシュ。";
+            keyword = "helicopter,massage";
         }
-    };
+    } 
+    // 2. 予算が「低い」場合の工夫プラン
+    else if (budget === "low") {
+        if (mood === "active") {
+            title = "絶景を巡るサイクリング旅";
+            desc = "レンタサイクルで、まだ行ったことのない公園や海岸へ。風を感じながら体を動かす、最高にヘルシーな休日です。";
+            keyword = "cycling,park";
+        } else if (who === "alone") {
+            title = "大型書店のハシゴ＆カフェ読書";
+            desc = "気になる本を片っ端からチェック。コーヒー1杯の値段で、知識の海に溺れる静かな休日。";
+            keyword = "book,cafe";
+        } else {
+            title = "おしゃピク（おしゃれピクニック）";
+            desc = "家にあるものを持ち寄って、景色の良い公園へ。外で食べるだけで、いつもの食事がイベントに変わります。";
+            keyword = "picnic";
+        }
+    }
+    // 3. 予算が「普通」かつ「人数」で分ける
+    else {
+        if (people === "one") {
+            if (mood === "new") {
+                title = "ミニシアターで映画鑑賞";
+                desc = "大型館ではやらないような、マニアックな名作を。鑑賞後は一人でじっくり余韻に浸って。";
+                keyword = "cinema";
+            } else {
+                title = "隠れ家カフェ巡り";
+                desc = "スマホを置いて、お店のこだわりを味わう時間。自分のペースで街を歩く楽しさを再発見。";
+                keyword = "coffee,interior";
+            }
+        } else if (people === "two") {
+            title = "話題の没入型アート展";
+            desc = "2人で最新のデジタルアートを体験。写真もたくさん撮って、会話が途切れない刺激的な時間に。";
+            keyword = "art,digital";
+        } else {
+            title = "チーム対抗！ボウリング or ダーツ";
+            desc = "みんなでワイワイ盛り上がるなら定番が一番。チーム戦にして、ちょっとした景品を用意するとさらに楽しい！";
+            keyword = "darts,party";
+        }
+    }
 
-    // --- 3. 人数の呼び方 ---
-    const peopleTexts = { one: "ひとりで", two: "2人で", group: "みんなで" };
+    // --- 画像の表示 (Unsplashから動的に取得) ---
+    // ランダム要素を入れるためにランダムな数字を末尾に付与
+    const randomNum = Math.floor(Math.random() * 100);
+    const imageUrl = `https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1000&auto=format&fit=crop&sig=${randomNum}`; 
+    // ※↑本来はキーワード連動が理想ですが、Unsplashの仕様変更に備え、安定した画像にキーワードを添えます
+    const dynamicImageUrl = `https://source.unsplash.com/featured/?${keyword},city`;
 
-    // --- 4. 画像 (mood) ---
-    const images = {
-        relax: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500",
-        active: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500",
-        new: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=500",
-        food: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500"
-    };
+    // 画面に反映
+    const resultBox = document.getElementById("resultBox");
+    resultBox.style.display = "block";
+    
+    document.getElementById("resultTitle").innerText = title;
+    document.getElementById("resultText").innerText = desc;
+    document.getElementById("resultImage").src = dynamicImageUrl;
 
-    // 結果の組み立て
-    const resultPlace = places[who][mood];
-    const resultDetail = details[budget][time];
-    const resultPeople = peopleTexts[people];
-
-    const finalTitle = "✨ あなたへの休日プラン ✨";
-    const finalText = `今日は${resultPeople}「${resultPlace}」へ！\n\n${resultDetail}`;
-
-    // 画面に表示
-    document.getElementById("resultBox").style.display = "block";
-    document.getElementById("resultTitle").innerText = finalTitle;
-    document.getElementById("resultText").innerText = finalText;
-    document.getElementById("resultImage").src = images[mood];
-
-    // 結果の位置までスクロール（おまけ）
-    document.getElementById("resultBox").scrollIntoView({ behavior: 'smooth' });
+    // スムーズに結果まで移動
+    window.scrollTo({ top: resultBox.offsetTop, behavior: 'smooth' });
 }
