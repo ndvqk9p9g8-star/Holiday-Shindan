@@ -1,62 +1,97 @@
 function diagnose() {
-    const people = document.getElementById("people").value; // one, two, group
-    const time = document.getElementById("time").value;     // full, half, short
-    const mood = document.getElementById("mood").value;     // relax, active, new, food
-    const budget = document.getElementById("budget").value; // low, mid, high
+    const people = document.getElementById("people").value;
+    const time = document.getElementById("time").value;
+    const mood = document.getElementById("mood").value;
+    const budget = document.getElementById("budget").value;
 
-    // 1. メインの目的地（気分 × 予算 × 人数）
-    const spots = {
+    // 巨大なプランデータベース： [気分][予算][時間]
+    const masterData = {
         relax: {
-            low:  { one: "大きな都立公園", two: "静かな日本庭園", group: "開放感のある河川敷" },
-            mid:  { one: "サウナ付き銭湯", two: "プラネタリウム", group: "貸切露天風呂" },
-            high: { one: "ホテルのスパ", two: "高級ラウンジ", group: "リゾートホテルのデイユース" }
+            low: {
+                short: "静かな公立図書館の閲覧室",
+                half: "大きな公園の芝生で読書",
+                full: "海辺の堤防でぼーっとする"
+            },
+            mid: {
+                short: "駅近の足湯・銭湯",
+                half: "最新設備のスーパー銭湯",
+                full: "緑に囲まれた日帰り温泉"
+            },
+            high: {
+                short: "ホテルのティーラウンジ",
+                half: "個室ヘッドスパ",
+                full: "客室露天風呂のデイユース"
+            }
         },
         active: {
-            low:  { one: "街歩き・階段巡り", two: "神社仏閣スタンプラリー", group: "公園でアクティブスポーツ" },
-            mid:  { one: "ボルダリング", two: "インドアゴルフ", group: "大型スポッチャ" },
-            high: { one: "パーソナルジム体験", two: "本格アスレチック", group: "プライベートサバゲー" }
+            low: {
+                short: "近所の階段・坂道散歩",
+                half: "パワースポット巡りウォーキング",
+                full: "低山での軽ハイキング"
+            },
+            mid: {
+                short: "バッティングセンター",
+                half: "ボルダリングジム",
+                full: "大型アスレチックパーク"
+            },
+            high: {
+                short: "最新VRアトラクション",
+                half: "乗馬体験レッスン",
+                full: "貸切テニスコート・BBQ"
+            }
         },
         new: {
-            low:  { one: "知らない街の商店街", two: "フリーマーケット", group: "謎解きウォーキング" },
-            mid:  { one: "陶芸教室", two: "没入型アート展", group: "脱出ゲーム施設" },
-            high: { one: "オーダーメイド体験", two: "ナイトクルージング", group: "リムジンパーティー" }
+            low: {
+                short: "知らない駅での途中下車",
+                half: "大きなリサイクルショップ巡り",
+                full: "路面電車で終点まで行く旅"
+            },
+            mid: {
+                short: "コンセプトカフェ",
+                half: "陶芸やシルバーリング作り",
+                full: "脱出ゲーム施設をはしご"
+            },
+            high: {
+                short: "ブランド旗艦店の見学",
+                half: "プライベートサウナ",
+                full: "話題の没入型体験アート"
+            }
         },
         food: {
-            low:  { one: "行列のラーメン店", two: "仲見世通り食べ歩き", group: "デパ地下フェス" },
-            mid:  { one: "隠れ家ビストロ", two: "テラスランチ", group: "本格BBQ場" },
-            high: { one: "カウンター寿司", two: "夜景フレンチ", group: "ホテルビュッフェ" }
+            low: {
+                short: "SNSで話題のスイーツ店",
+                half: "商店街の食べ歩き",
+                full: "デパ地下の限定品ハンティング"
+            },
+            mid: {
+                short: "本格的なカレー・ラーメン店",
+                half: "見晴らしの良いテラスランチ",
+                full: "少し遠くの漁港で海鮮丼"
+            },
+            high: {
+                short: "高級店のアフタヌーンティー",
+                half: "ホテルランチビュッフェ",
+                full: "夜景の見えるフルコース"
+            }
         }
     };
 
-    // 2. 時間による「過ごし方」の味付け（ここで行き先が具体化される）
-    const timeDetails = {
-        short: {
-            action: "をピンポイントで攻略！",
-            tip: "移動時間を最小限にして、その場所の「一番美味しいところ」だけを凝縮して楽しむのが正解です。"
-        },
-        half: {
-            action: "をメインに周辺散策！",
-            tip: "目的地を楽しんだ後は、近くのカフェやショップにも立ち寄って、エリア全体を味わい尽くしましょう。"
-        },
-        full: {
-            action: "を拠点に1日じっくり！",
-            tip: "朝から晩まで時間を気にせず、普段は見落としてしまうような細かい魅力まで徹底的に堪能する贅沢な1日を。"
-        }
+    // 人数による一言コメント
+    const peopleAdvice = {
+        one: "自分だけの時間を贅沢に味わえますね。",
+        two: "二人だからこその会話も楽しめそうです。",
+        group: "みんなでワイワイ、最高の思い出になりそう！"
     };
 
-    // 選択された要素を抽出
-    const baseSpot = spots[mood][budget][people];
-    const detail = timeDetails[time];
-
-    // 最終的なタイトルと説明文
-    const title = baseSpot + detail.action;
-    const desc = `今の気分にぴったりのプランをご提案します。${baseSpot}へ行って、${detail.tip}`;
+    // 結果を取得
+    const spot = masterData[mood][budget][time];
+    const advice = peopleAdvice[people];
 
     // 画面表示
     const resultBox = document.getElementById("resultBox");
     resultBox.style.display = "block";
-    document.getElementById("resultTitle").innerText = "✨ 行き先： " + title;
-    document.getElementById("resultText").innerText = desc;
+    document.getElementById("resultTitle").innerText = "✨ 行き先： " + spot;
+    document.getElementById("resultText").innerText = `${spot}へ行くのが今のあなたにぴったり。${advice}`;
 
     resultBox.scrollIntoView({ behavior: 'smooth' });
 }
