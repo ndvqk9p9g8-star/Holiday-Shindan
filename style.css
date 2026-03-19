@@ -6,6 +6,27 @@ body {
     text-align: center;
 }
 
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    white-space: nowrap; /* 改行を禁止 */
+}
+
+/* スマホ用の設定 */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 6vw; /* 画面幅に合わせて自動縮小 */
+        letter-spacing: -1px; /* 文字間を少し詰める */
+    }
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #8d6e63;
+    margin-bottom: 20px;
+}
+
 .container {
     background: #fff;
     max-width: 450px;
@@ -73,22 +94,4 @@ button {
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
-}
-/* タイトルの基本設定 */
-h1 {
-    font-size: 28px; /* PCでのサイズ */
-    margin-bottom: 10px;
-    white-space: nowrap; /* 勝手に改行させない */
-}
-
-/* 📱 スマホ（画面幅480px以下）の時の調整 */
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 22px; /* スマホで一行に収まるように少し小さく */
-        letter-spacing: -0.5px; /* 文字の間隔をわずかに詰める */
-    }
-    
-    .subtitle {
-        font-size: 13px; /* サブタイトルも少し調整 */
-    }
 }
